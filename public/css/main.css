@@ -1,0 +1,38 @@
+table,th,td{
+    color: whitesmoke;
+    border: solid 1px whitesmoke;
+    font-size: larger;
+    word-wrap: break-word;         
+    overflow-wrap: break-word;
+}
+
+table{
+    table-layout: fixed;
+    width: 60%;
+    position: absolute;
+    top: 25%;
+}
+
+input{
+    width: 33%;
+    height: 100%;
+    border: 1px solid whitesmoke;
+    font-size: x-large;
+    color: white;
+}
+button{
+    color: white;
+    border: 1px solid whitesmoke;
+    font-size: x-large;
+    position: absolute;
+    top: 18.5%;
+    right: 14.7%;
+    height: 6%;
+    width: 5%;
+}
+.new_record{
+    width: 60%;
+    height: 6%;
+    position: absolute;
+    top: 18.5%;
+}
