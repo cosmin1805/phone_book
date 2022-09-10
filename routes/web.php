@@ -21,10 +21,11 @@ Route::get('/', function () {
     return view('welcome',['phoneNumbers'=>$phones]);
 })->middleware('auth');
 
-Route::post('/savePhone', [PostsController::class,'savePhone'])->middleware(['auth'])->name('savePhone');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::post('/savePhone', [PostsController::class,'savePhone'])->middleware(['auth'])->name('savePhone');
+Route::post('/updatePhone', [PostsController::class,'updatePhone'])->middleware(['auth'])->name('updatePhone');
+Route::post('/deletePhone', [PostsController::class,'deletePhone'])->middleware(['auth'])->name('deletePhone');
 require __DIR__.'/auth.php';

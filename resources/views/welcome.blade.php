@@ -22,7 +22,10 @@
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     </head>
     <body class="antialiased">
-        
+        <form method="POST" id="delete:list" action="{{route('deletePhone')}}" accept-charset="UTF-8">
+            {{csrf_field()}}
+            <input type="hidden" name="id" id="ids"value="">
+        </form>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                         <div class="text-sm text-gray-700 dark:text-white" style="font-size: x-large">{{ Auth::user()->name }}</div>
@@ -38,7 +41,7 @@
                         <input type="text" name="lastname" class="bg-gray-100 dark:bg-gray-900" placeholder="Last name" required>
                         <input type="tel" name="phonenumber" class="bg-gray-100 dark:bg-gray-900" maxlength="10" minlength="10" pattern="07[0-9]{8}" placeholder="0712345678" required>
                 </form>
-            <table>
+            <table id="table">
                 <tr>
                     <th style="border: none"></th>
                     <th>First name</th>
@@ -48,10 +51,16 @@
                 </tr>
                 @foreach($phoneNumbers as $phoneNumbers)
                 <tr>
-                    <form method="POST" id="ADD" action="" accept-charset="UTF-8"  class="new_record" >
+                    <form method="POST" id="delete:{{$phoneNumbers->id}}" action="{{route('deletePhone')}}" accept-charset="UTF-8"  class="new_record" >
+                        {{csrf_field()}}
+                        <input type="hidden" name="id"  value="{{$phoneNumbers->id}}">
+                        <td style="border: none;">
+                            <button type="button" name="delete" id="{{$phoneNumbers->id}}"></button>
+                        </td>
+                    </form>
+                    <form method="POST" id="ADD" action="{{route('updatePhone')}}" onsubmit="return confirm('Do you really want to submit this changes?');" accept-charset="UTF-8"  class="new_record" >
                         {{csrf_field()}}
                         <input type="hidden" name="id" value="{{$phoneNumbers->id}}">
-                        <td style="border: none;"><button type="button" name="delete" id="{{$phoneNumbers->id}}" ></button></td>
                         <td><input type="text" name="firstname" class="bg-gray-100 dark:bg-gray-900 input_t" placeholder="First name" value="{{ $phoneNumbers->first_name }}" required></td>
                         <td><input type="text" name="lastname" class="bg-gray-100 dark:bg-gray-900 input_t" placeholder="Last name" value="{{ $phoneNumbers->last_name }}" required></td>
                         <td><input type="tel" name="phonenumber" class="bg-gray-100 dark:bg-gray-900 input_t" maxlength="10" minlength="10" pattern="07[0-9]{8}" placeholder="0712345678" value="{{ $phoneNumbers->phone_number }}" required></td>
@@ -61,6 +70,7 @@
                 @endforeach
             </table>
         </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <script src="{{ asset('js/main.js') }}" ></script>
     </body>
 </html>
