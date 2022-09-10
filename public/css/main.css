@@ -8,9 +8,10 @@ table,th,td{
 
 table{
     table-layout: fixed;
-    width: 60%;
+    width: 100%;
     position: absolute;
     top: 25%;
+    border: none;
 }
 
 input{
@@ -20,7 +21,7 @@ input{
     font-size: x-large;
     color: white;
 }
-button{
+.submit_add{
     color: white;
     border: 1px solid whitesmoke;
     font-size: x-large;
@@ -35,4 +36,11 @@ button{
     height: 6%;
     position: absolute;
     top: 18.5%;
+}
+button[name="delete"] {
+    float: right;
+    background: white;
+    height: 30px; 
+    width: 30px;
+    font-size:auto;
 }

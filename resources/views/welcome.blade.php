@@ -22,33 +22,39 @@
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     </head>
     <body class="antialiased">
+        
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
+                        <div class="text-sm text-gray-700 dark:text-white" style="font-size: x-large">{{ Auth::user()->name }}</div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="{{ url('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="font-size: x-large" onclick="event.preventDefault();this.closest('form').submit();">Logout</a>
+                        </form>
                 </div>
-            @endif
-                <button type="button" class="bg-gray-100 dark:bg-gray-900">ADD</button>
-                <form method="POST" action="" accept-charset="UTF-8"  class="new_record" >
+                <input type="submit" form="ADD" value="ADD" class="bg-gray-100 dark:bg-gray-900 submit_add">
+                <form method="POST" id="ADD" action="{{route('savePhone')}}" accept-charset="UTF-8"  class="new_record" >
                     {{csrf_field()}}
-                        <input type="text" class="bg-gray-100 dark:bg-gray-900" required>
-                        <input type="text" class="bg-gray-100 dark:bg-gray-900" required>
-                        <input type="tel" class="bg-gray-100 dark:bg-gray-900" maxlength="10" required>
+                        <input type="text" name="firstname" class="bg-gray-100 dark:bg-gray-900" placeholder="First name" required>
+                        <input type="text" name="lastname" class="bg-gray-100 dark:bg-gray-900" placeholder="Last name" required>
+                        <input type="tel" name="phonenumber" class="bg-gray-100 dark:bg-gray-900" maxlength="10" minlength="10" pattern="[0-9]{10}" placeholder="0712345678" required>
                 </form>
             <table>
                 <tr>
+                    <th style="border: none"></th>
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Phone number</th>
+                    <th style="border: none"></th>
                 </tr>
+                @foreach($phoneNumbers as $phoneNumbers)
+                <tr>
+                    <td style="border: none;"><button type="button" name="delete" id="{{$phoneNumbers->id}}" ></button></td>
+                    <td style="text-align: center">{{ $phoneNumbers->first_name }}</td>
+                    <td style="text-align: center">{{ $phoneNumbers->last_name }}</td>
+                    <td style="text-align: center">{{ $phoneNumbers->phone_number }}</td>
+                    <td style="border: none;">✏️<button type="button" name="modify" id="{{$phoneNumbers->id}}" ></td>
+                </tr>
+                @endforeach
             </table>
         </div>
         <script src="{{ asset('js/main.js') }}" ></script>
