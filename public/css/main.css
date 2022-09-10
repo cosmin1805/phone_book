@@ -21,6 +21,7 @@ input{
     font-size: x-large;
     color: white;
 }
+
 .submit_add{
     color: white;
     border: 1px solid whitesmoke;
@@ -31,16 +32,31 @@ input{
     height: 6%;
     width: 5%;
 }
+
+.submit_modify
+{
+    border: none;
+    text-align: left;
+}
+
 .new_record{
     width: 60%;
     height: 6%;
     position: absolute;
     top: 18.5%;
 }
+
 button[name="delete"] {
     float: right;
     background: white;
     height: 30px; 
     width: 30px;
     font-size:auto;
+}
+
+.input_t{
+    height: 100%;
+    width: 100%;
+    border: none;
+    text-align: center;
 }

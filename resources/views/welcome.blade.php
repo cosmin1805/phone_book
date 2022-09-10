@@ -36,7 +36,7 @@
                     {{csrf_field()}}
                         <input type="text" name="firstname" class="bg-gray-100 dark:bg-gray-900" placeholder="First name" required>
                         <input type="text" name="lastname" class="bg-gray-100 dark:bg-gray-900" placeholder="Last name" required>
-                        <input type="tel" name="phonenumber" class="bg-gray-100 dark:bg-gray-900" maxlength="10" minlength="10" pattern="[0-9]{10}" placeholder="0712345678" required>
+                        <input type="tel" name="phonenumber" class="bg-gray-100 dark:bg-gray-900" maxlength="10" minlength="10" pattern="07[0-9]{8}" placeholder="0712345678" required>
                 </form>
             <table>
                 <tr>
@@ -48,11 +48,15 @@
                 </tr>
                 @foreach($phoneNumbers as $phoneNumbers)
                 <tr>
-                    <td style="border: none;"><button type="button" name="delete" id="{{$phoneNumbers->id}}" ></button></td>
-                    <td style="text-align: center">{{ $phoneNumbers->first_name }}</td>
-                    <td style="text-align: center">{{ $phoneNumbers->last_name }}</td>
-                    <td style="text-align: center">{{ $phoneNumbers->phone_number }}</td>
-                    <td style="border: none;">✏️<button type="button" name="modify" id="{{$phoneNumbers->id}}" ></td>
+                    <form method="POST" id="ADD" action="" accept-charset="UTF-8"  class="new_record" >
+                        {{csrf_field()}}
+                        <input type="hidden" name="id" value="{{$phoneNumbers->id}}">
+                        <td style="border: none;"><button type="button" name="delete" id="{{$phoneNumbers->id}}" ></button></td>
+                        <td><input type="text" name="firstname" class="bg-gray-100 dark:bg-gray-900 input_t" placeholder="First name" value="{{ $phoneNumbers->first_name }}" required></td>
+                        <td><input type="text" name="lastname" class="bg-gray-100 dark:bg-gray-900 input_t" placeholder="Last name" value="{{ $phoneNumbers->last_name }}" required></td>
+                        <td><input type="tel" name="phonenumber" class="bg-gray-100 dark:bg-gray-900 input_t" maxlength="10" minlength="10" pattern="07[0-9]{8}" placeholder="0712345678" value="{{ $phoneNumbers->phone_number }}" required></td>
+                        <td style="border: none;"><input type="submit"  value="✏️" class="bg-gray-100 dark:bg-gray-900 submit_modify"></td>
+                    </form>
                 </tr>
                 @endforeach
             </table>
