@@ -1,3 +1,11 @@
+//search for the last thing in cookie memory
+var Cook = Cookies.get("filter")
+if(Cook!=undefined)
+{
+    input = document.getElementById("myInput");
+    input.value = Cook
+    search();
+}
 
 var delets = document.getElementsByName('delete')
 var multyple = 0
@@ -57,6 +65,9 @@ function search(){
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
+
+    //save the filter to cookies
+    Cookies.set('filter', input.value, { expires: 100 })
 
     for (i = 0; i < tr.length; i++) {
 

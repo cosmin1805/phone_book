@@ -79,7 +79,7 @@
                 @endforeach
             </table>
         </div>
-
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js" type="text/javascript"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <script src="{{ asset('js/main.js') }}" ></script>
 
