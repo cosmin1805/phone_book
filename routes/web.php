@@ -28,4 +28,5 @@ Route::get('/dashboard', function () {
 Route::post('/savePhone', [PostsController::class,'savePhone'])->middleware(['auth'])->name('savePhone');
 Route::post('/updatePhone', [PostsController::class,'updatePhone'])->middleware(['auth'])->name('updatePhone');
 Route::post('/deletePhone', [PostsController::class,'deletePhone'])->middleware(['auth'])->name('deletePhone');
+
 require __DIR__.'/auth.php';

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class PostsController extends Controller
 {
+    
     public function savePhone(Request $request){
         $newPhone = new phone_numbers;
         $newPhone->user = Auth::user()->name;
@@ -17,6 +18,7 @@ class PostsController extends Controller
         $newPhone->save();
         return redirect('/');
     }
+
     public function updatePhone(Request $request){
         $Phone= phone_numbers::find($request->id);
         $Phone->first_name = $request->firstname;
@@ -25,6 +27,7 @@ class PostsController extends Controller
         $Phone->save();
         return redirect("/");
     }
+
     public function deletePhone(Request $request){
         $id=$request->id;
         $id_array = explode(",",$id);
