@@ -70,42 +70,41 @@ function search(){
             lastname = lastname.value.toLocaleUpperCase();
             phonenumber = phonenumber.value;
 
-            var boolArray = search_name(firstname,lastname,phonenumber,filter)
-
-            for(var j=0;j<boolArray.length;j++)
-            {
-                if(!boolArray[j])
-                {
-                    tr[i].style.display = "none";
-                    break;
-                }
-                if(j==boolArray.length-1)
-                    tr[i].style.display = "";
-            }
+            search_name(firstname,lastname,phonenumber,filter,tr[i])
 
         }
     }
 }
 
-function search_name(firstname,lastname,phonenumber,filter)
+function search_name(firstname,lastname,phonenumber,filter,tr)
 {
     var name = firstname + " " + lastname + " " + phonenumber
+
     var nameArray = name.split(" ")
     var filterArray = filter.split(" ")
-    var boolArray =[]
 
+    var show = true;
     filterArray.forEach(filter => {
         var found = false;
+
         nameArray.forEach(name => {
             if(check_name(filter,name))
             {
                 found = true;
             }
         });
-        boolArray.push(found);
+
+        if(found==false)
+        {
+            tr.style.display = "none";
+            show = false;
+        }
+
     });
 
-    return boolArray;
+    if(show)  
+        tr.style.display = "";
+        
 }
 
 function check_name(filter,name)
