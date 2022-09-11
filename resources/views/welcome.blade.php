@@ -21,7 +21,7 @@
         </style>
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     </head>
-    <body class="antialiased">
+    <body class="antialiased bg-gray-100 dark:bg-gray-900">
         <!-- Delete form for multyple selection-->
         <form method="POST" id="delete:list" action="{{route('deletePhone')}}" accept-charset="UTF-8">
             {{csrf_field()}}
